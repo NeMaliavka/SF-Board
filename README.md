@@ -33,10 +33,8 @@ pip install -r requirements.txt
 Выполните миграции базы данных:
 python manage.py migrate
 
-
 Запустите сервер разработки:
 python manage.py runserver
-
 
 Откройте браузер и перейдите по адресу http://127.0.0.1:8000/.
 
