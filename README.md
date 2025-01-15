@@ -49,23 +49,42 @@ python manage.py runserver
 
 ### Структура проекта:
 myproject/
+
 │
 ├── ads/                  # Приложение для управления объявлениями
+
 │   ├── migrations/       # Миграции базы данных
+
 │   ├── templates/        # Шаблоны HTML
+
 │   ├── __init__.py
+
 │   ├── admin.py
+
 │   ├── apps.py
+
 │   ├── forms.py          # Формы для работы с объявлениями
+
 │   ├── models.py         # Модели базы данных
+
 │   ├── tests.py
+
 │   └── views.py          # Представления для обработки запросов
+
 │
+
 ├── myproject/            # Основной проект
+
 │   ├── __init__.py
+
 │   ├── settings.py       # Настройки проекта
+
 │   ├── urls.py           # URL маршруты
+
 │   └── wsgi.py
+
 │
+
 ├── manage.py             # Скрипт для управления проектом
+
 └── requirements.txt      # Зависимости проекта
