@@ -8,7 +8,6 @@ class Ad(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_ads')
     is_closed = models.BooleanField(default=False)  # Поле для отслеживания статуса объявления
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ads', null=True, blank=True)
-    email = models.EmailField()  # поле для электронной почты
 
     def __str__(self):
         return self.title
