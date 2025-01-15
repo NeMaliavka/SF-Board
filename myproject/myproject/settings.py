@@ -128,3 +128,12 @@ LOGOUT_URL = 'logout'  # Имя маршрута выхода
 LOGIN_REDIRECT_URL = 'ads'  # Страница, куда пользователи будут перенаправляться после входа
 LOGOUT_REDIRECT_URL = 'home'  # Страница, куда пользователи будут перенаправляться после выхода
 SITE_ID = 1
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_email@gmail.com'  # Ваш адрес электронной почты
+EMAIL_HOST_PASSWORD = 'your_password'  # Ваш пароль
