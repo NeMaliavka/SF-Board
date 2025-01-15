@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .models import Ad
-from .utils import send_one_time_code
+from .utils import send_one_time_code, notify_ad_creation
 from .forms import AdForm
 from django.contrib.auth.decorators import login_required
 
@@ -12,8 +12,12 @@ def add_ad(request):
     if request.method == 'POST':
         title = request.POST['title']
         description = request.POST['description']
-        ad = Ad(title=title, description=description, user=request.user, author=request.user)
+        ad = Ad(title=title, description=description, user=request.user)  # Установка текущего пользователя
         ad.save()
+
+        # Уведомление о создании объявления
+        notify_ad_creation(ad)
+
         return redirect('ads')
     return render(request, 'ads/add_ad.html')
 
@@ -45,13 +49,13 @@ def edit_ad(request, ad_id):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = AdForm(request.POST)
         if form.is_valid():
             user = form.save()
             send_one_time_code(user)
             return redirect('ads')
     else:
-        form = UserCreationForm()
+        form = AdForm()
     return render(request, 'registration/register.html', {'form': form})
 
 
