@@ -51,6 +51,7 @@ python manage.py runserver
 myproject/
 
 │
+
 ├── ads/                  # Приложение для управления объявлениями
 
 │   ├── migrations/       # Миграции базы данных
