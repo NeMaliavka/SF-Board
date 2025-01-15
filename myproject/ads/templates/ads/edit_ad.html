@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактировать объявление</title>
+</head>
+<body>
+    <h1>Редактировать объявление</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Название:</label>
+        <input type="text" id="title" name="title" value="{{ ad.title }}" required>
+        <br>
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description" required>{{ ad.description }}</textarea>
+        <br>
+        <button type="submit">Сохранить изменения</button>
+    </form>
+    <a href="{% url 'ad_detail' ad.id %}">Отмена</a>
+</body>
+</html>

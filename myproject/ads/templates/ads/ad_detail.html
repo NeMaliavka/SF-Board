@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ad.title }}</title>
+</head>
+<body>
+    <h1>{{ ad.title }}</h1>
+    <p>{{ ad.description }}</p>
+    <p>Создано: {{ ad.created_at }}</p>
+    <p>Автор: {{ ad.user.username }}</p>
+
+    {% if not ad.is_closed %}
+        <form action="{% url 'close_ad' ad.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Закрыть объявление</button>
+        </form>
+    {% else %}
+        <p>Объявление закрыто.</p>
+    {% endif %}
+     {% if request.user == ad.user %}  <!-- Проверяем, является ли текущий пользователь автором объявления -->
+        <a href="{% url 'edit_ad' ad.id %}">Изменить объявление</a>  <!-- Кнопка для изменения объявления -->
+    {% endif %}
+
+    <a href="{% url 'ads' %}">Назад к списку объявлений</a>
+</body>
+</html>

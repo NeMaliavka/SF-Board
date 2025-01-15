@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список объявлений</title>
+    <style>
+        .closed {
+            color: red;  /* Красный цвет для закрытых объявлений */
+        }
+        .open {
+            color: green;  /* Зеленый цвет для открытых объявлений */
+        }
+    </style>
+</head>
+<body>
+    <h1>Список объявлений</h1>
+    <a href="{% url 'add_ad' %}">Добавить объявление</a>
+    <ul>
+        {% for ad in ads %}
+            <li>
+                <a href="{% url 'ad_detail' ad.id %}">{{ ad.title }}</a> - Автор: {{ ad.user.username }}  <!-- Имя пользователя -->
+                {% if ad.is_closed %}
+                    <span class="closed">Закрыто</span>
+                {% else %}
+                    <span class="open">Открыто</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Выход</button>
+    </form>
+
+</body>
+</html>

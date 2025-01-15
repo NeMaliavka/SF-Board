@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Добро пожаловать на главную страницу!</h1>
+
+    {% if user.is_authenticated %}
+        <p>Вы вошли как {{ user.username }}.</p>
+        <a href="{% url 'ads' %}">Перейти к объявлениям</a>
+    {% else %}
+        <p>Пожалуйста, авторизуйтесь или зарегистрируйтесь.</p>
+        <a href="{% url 'login' %}">Авторизация</a> |
+        <a href="{% url 'register' %}">Регистрация</a>
+    {% endif %}
+</body>
+</html>
